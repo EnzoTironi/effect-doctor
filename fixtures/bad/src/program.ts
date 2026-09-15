@@ -2,7 +2,7 @@ import { Effect, Layer, Schema } from "effect";
 
 const User = Schema.Struct({ id: Schema.String });
 
-const leaked = "\u0073k_live_51ThisIsAFakeStripeKey99";
+const leaked = "cf_examplelocalonlytoken99";
 
 let scratch = 0;
 
