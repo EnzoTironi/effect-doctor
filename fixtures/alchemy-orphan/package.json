@@ -1,0 +1,7 @@
+{
+  "name": "fixture-alchemy-orphan",
+  "private": true,
+  "dependencies": {
+    "alchemy": "0.50.0"
+  }
+}
