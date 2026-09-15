@@ -1,0 +1,30 @@
+name: Effect Doctor
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: effect-doctor-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      # Dogfood the PR's CLI. Do not scan fixtures/bad — that tree exists to fail.
+      - run: npx tsx src/cli.ts fixtures/good --fail-on warning --json
+      - run: npx tsx src/cli.ts src --fail-on error --json
