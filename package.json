@@ -1,0 +1,68 @@
+{
+  "name": "effect-ts-doctor",
+  "version": "0.2.0",
+  "description": "Your agent writes bad Effect. This catches it.",
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE",
+  "author": {
+    "name": "Enzo Tironi",
+    "email": "enzo.tironi.2001@gmail.com"
+  },
+  "bin": {
+    "effect-ts-doctor": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "effect-doctor": "tsx src/cli.ts",
+    "effect-ts-doctor": "tsx src/cli.ts",
+    "test": "tsx --test test/*.test.ts",
+    "test:public-effect-repos": "EFFECT_DOCTOR_PUBLIC_REPOS=1 tsx --test test/public-repos.test.ts",
+    "typecheck": "tsc --noEmit",
+    "corpus": "tsx scripts/scan-public-repos.ts"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "effect",
+    "effect-ts",
+    "doctor",
+    "cli",
+    "lint",
+    "alchemy"
+  ],
+  "homepage": "https://github.com/EnzoTironi/effect-doctor#readme",
+  "bugs": {
+    "url": "https://github.com/EnzoTironi/effect-doctor/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnzoTironi/effect-doctor.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.1",
+    "tsx": "^4.20.5"
+  }
+}
